@@ -9,8 +9,11 @@ ID系统。很多应用的使用率很低，很容易就忘记了密码，这个
 
 ##强密码
 随机大写英文字母密码库：ABCDEFGHIJKLMNOPQRSTUVWXYZ
+
 随机小写英文字母密码库：abcdefghijklmnopqrstuvwxyz
+
 随机数字密码库：0123456789
+
 随机标点符号：
 
 | 符号 | ASCII码 |
