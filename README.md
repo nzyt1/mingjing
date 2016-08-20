@@ -1,3 +1,5 @@
+For [chinese](https://github.com/nzyt1/mingjing/edit/master/README-zh.md)
+
 # MingJing
 MingJing is a password generator and vault, also called mirror. 
 The password generator recieve a service name then generator a strong password for user.
