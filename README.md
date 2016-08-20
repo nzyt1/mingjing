@@ -1,4 +1,4 @@
-For [Chinese](https://github.com/nzyt1/mingjing/master/README-zh.md)
+For [Chinese](https://github.com/nzyt1/mingjing/blob/master/README-zh.MD)
 
 # MingJing
 MingJing is a password generator and vault, also called mirror. 
