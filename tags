@@ -1,0 +1,72 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+AES_ARR_LEN	src/data.h	57;"	d
+AES_DATA_LEN	src/data.h	55;"	d
+AES_KEY_LEN	src/data.h	56;"	d
+BOX_NUM	src/data.h	13;"	d
+BUFFER_EMPTY	src/core.h	23;"	d
+CFLAGS	Makefile	/^CFLAGS = -DDEBUG$/;"	m
+CORE_H	src/data.h	11;"	d
+DEBUGDECL	src/debug.h	26;"	d
+DEBUGDECL	src/debug.h	29;"	d
+DEBUG_H	src/debug.h	19;"	d
+DIR_MASK	src/core.h	29;"	d
+FILE_MASK	src/core.h	31;"	d
+FILE_NOT_EXSIT	src/core.h	22;"	d
+FILE_UTIL_H	src/core.h	20;"	d
+INSERT_FAIL	src/core.h	26;"	d
+INSERT_SUCCESS	src/core.h	25;"	d
+MAX_COMMAND_FLAGS	src/main.c	40;"	d	file:
+NBOX_LEN	src/data.h	15;"	d
+PDEBUG	src/debug.h	25;"	d
+PDEBUG	src/debug.h	28;"	d
+PFUNC	src/debug.h	32;"	d
+PSTDERR	src/debug.h	24;"	d
+PWDDIR	src/core.h	28;"	d
+PWDFILE	src/core.h	30;"	d
+SBOX_LEN	src/data.h	16;"	d
+USER_EXSIT	src/core.h	34;"	d
+USER_NOT_EXSIT	src/core.h	35;"	d
+VERSION	src/version.h	1;"	d
+VPAHT	Makefile	/^VPAHT = src$/;"	m
+WBOX_LEN	src/data.h	14;"	d
+_POSIX_C_SOURCE	src/main.c	18;"	d	file:
+_POSIX_C_SOURCE	src/main.c	19;"	d	file:
+adj_order	src/data.c	/^int adj_order(unsigned char *pwd)$/;"	f	signature:(unsigned char *pwd)
+adj_order	src/data.h	/^int adj_order(unsigned char *pwd);$/;"	p	signature:(unsigned char *pwd)
+base64decode	src/data.c	/^int base64decode(unsigned char *in, unsigned char *out)$/;"	f	signature:(unsigned char *in, unsigned char *out)
+base64encode	src/data.c	/^int base64encode(unsigned char *in, unsigned char *out)$/;"	f	signature:(unsigned char *in, unsigned char *out)
+box_num_gene	src/data.c	/^int box_num_gene(int box_num[BOX_NUM], unsigned char random[BOX_NUM], int pwd_len)$/;"	f	signature:(int box_num[BOX_NUM], unsigned char random[BOX_NUM], int pwd_len)
+box_num_gene	src/data.h	/^int box_num_gene(int box_num[BOX_NUM], unsigned char random[BOX_NUM], int pwd_len);$/;"	p	signature:(int box_num[BOX_NUM], unsigned char random[BOX_NUM], int pwd_len)
+decrypt	src/data.c	/^int decrypt(unsigned char *in, unsigned char *out, unsigned char *key)$/;"	f	signature:(unsigned char *in, unsigned char *out, unsigned char *key)
+decrypt	src/data.h	/^int decrypt(unsigned char *in, unsigned char *out, unsigned char *key);$/;"	p	signature:(unsigned char *in, unsigned char *out, unsigned char *key)
+delete	src/core.c	/^int delete(unsigned char *app, unsigned char *username)$/;"	f	signature:(unsigned char *app, unsigned char *username)
+encrypt	src/data.c	/^int encrypt(unsigned char *in, unsigned char *out, unsigned char *key)$/;"	f	signature:(unsigned char *in, unsigned char *out, unsigned char *key)
+encrypt	src/data.h	/^int encrypt(unsigned char *in, unsigned char *out, unsigned char *key);$/;"	p	signature:(unsigned char *in, unsigned char *out, unsigned char *key)
+hash_gene	src/data.h	/^int hash_gene(unsigned char *app, unsigned char *username, unsigned char *hashcode);$/;"	p	signature:(unsigned char *app, unsigned char *username, unsigned char *hashcode)
+insert	src/core.c	/^int insert(unsigned char *app, unsigned char *username, unsigned char *password)$/;"	f	signature:(unsigned char *app, unsigned char *username, unsigned char *password)
+insert	src/core.h	/^int insert(unsigned char *app, unsigned char *username, unsigned char *password);$/;"	p	signature:(unsigned char *app, unsigned char *username, unsigned char *password)
+main	src/main.c	/^int main(int argc, char *argv[])$/;"	f	signature:(int argc, char *argv[])
+mingjing_get_version	src/version.c	/^const char *mingjing_get_version(void) {$/;"	f	signature:(void)
+nBox	src/data.h	/^const static unsigned char nBox[] =$/;"	v
+objects	Makefile	/^objects = main.o core.o fileUtil.o data.o$/;"	m
+programe_name	src/main.c	/^const static char *programe_name = "mingjing";$/;"	v	file:
+pwd_gene	src/data.c	/^int pwd_gene(unsigned char *app, unsigned char *username, unsigned char *password, int pwd_len)$/;"	f	signature:(unsigned char *app, unsigned char *username, unsigned char *password, int pwd_len)
+pwd_gene	src/data.h	/^int pwd_gene(unsigned char *app, unsigned char *username, unsigned char *password, int pwd_len);$/;"	p	signature:(unsigned char *app, unsigned char *username, unsigned char *password, int pwd_len)
+pword_gene	src/data.c	/^int pword_gene(unsigned char *seed, unsigned char *password, int box_num[BOX_NUM], int pwd_len)$/;"	f	signature:(unsigned char *seed, unsigned char *password, int box_num[BOX_NUM], int pwd_len)
+pword_gene	src/data.h	/^int pword_gene(unsigned char *seed, unsigned char *password, int box_num[BOX_NUM], int pwd_len);$/;"	p	signature:(unsigned char *seed, unsigned char *password, int box_num[BOX_NUM], int pwd_len)
+random_num_gene	src/data.c	/^int random_num_gene(unsigned char *seed, unsigned char *random_num, int random_len)$/;"	f	signature:(unsigned char *seed, unsigned char *random_num, int random_len)
+random_num_gene	src/data.h	/^int random_num_gene(unsigned char *seed, unsigned char *random_num, int random_len);$/;"	p	signature:(unsigned char *seed, unsigned char *random_num, int random_len)
+sBox	src/data.h	/^const static unsigned char sBox[] = $/;"	v
+search	src/core.c	/^int search(unsigned char *app, unsigned char *username)$/;"	f	signature:(unsigned char *app, unsigned char *username)
+seed_gene	src/data.c	/^int seed_gene(unsigned char *app, unsigned char *username, unsigned char *seed)$/;"	f	signature:(unsigned char *app, unsigned char *username, unsigned char *seed)
+seed_gene	src/data.h	/^int seed_gene(unsigned char *app, unsigned char *username, unsigned char *seed);$/;"	p	signature:(unsigned char *app, unsigned char *username, unsigned char *seed)
+true	src/core.h	33;"	d
+update	src/core.c	/^int update(unsigned char *app, unsigned char *username, unsigned char *password)$/;"	f	signature:(unsigned char *app, unsigned char *username, unsigned char *password)
+usage	src/main.c	/^static int usage(char **argv)$/;"	f	file:	signature:(char **argv)
+version	src/version.c	/^staic const void version[] = VERSION;$/;"	v
+wBox	src/data.h	/^const static unsigned char wBox[] = $/;"	v
