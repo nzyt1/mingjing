@@ -6,7 +6,7 @@ objects = main.o core.o fileUtil.o data.o
 CFLAGS = -DDEBUG
 
 mingjing : $(objects)
-	cc -o mingjing $(CFLAGS) $(objects) -lssl -lcrypto
+	cc -o mingjing $(CFLAGS) $(objects) -lssl -lcrypto -lm
 
 $(objects) : %.o : %.c core.h
 	$(CC) -c $(CFLAGS) $< -o $@

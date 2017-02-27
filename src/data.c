@@ -18,6 +18,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <math.h>
 #include <openssl/rand.h>
 #include <openssl/md5.h>
 #include <openssl/aes.h>
@@ -57,8 +58,6 @@ int random_num_gene(unsigned char *seed, unsigned char *random_num, int random_l
 
 	RAND_bytes(random_num, random_len);
 
-	PDEBUG("Leaver random_num_gene\n");
-
 	return 0;
 }
 
@@ -81,7 +80,6 @@ int pword_gene(unsigned char *seed, unsigned char *password, int box_num[BOX_NUM
 	unsigned char *random_num = (unsigned char*)malloc(pwd_len * sizeof(unsigned char));
 
 	random_num_gene(seed, random_num, pwd_len);
-	PDEBUG("random_num: %s\n", random_num);
 
 	for(int i=0; i<box_num[0];i++)
 		*(pwd+i) = wBox[(random_num[i] % WBOX_LEN)];
@@ -138,17 +136,12 @@ int pwd_gene(unsigned char *app, unsigned char *username, unsigned char *passwor
 	seed_gene(app, username, seed);
 
 	random_num_gene(seed, random_num, BOX_NUM);
-	PDEBUG("random_num: %s\n", random_num);
 
 	box_num_gene(box_num, random_num, pwd_len);
 
 	pword_gene(seed, password, box_num, pwd_len); 
 
-	PDEBUG("BEFOR ADJ: %s\n", password);
-
 	adj_order(password);
-
-	PDEBUG("AFTER ADJ: %s\n", password);
 
 	free(seed);
 	free(random_num);
@@ -221,7 +214,63 @@ int decrypt(unsigned char *in, unsigned char *out, unsigned char *key)
 	return 1;
 }
 
-int base64encode(unsigned char *in, unsigned char *out)
+int calcDecodeLength(const char* b64input) 
+{
+	//Calculates the length of a decoded base64 string
+	int len = strlen(b64input);
+	int padding = 0;
+
+	if (b64input[len-1] == '=' && b64input[len-2] == '=') //last two chars are =
+		padding = 2;
+	else if (b64input[len-1] == '=') //last char is =
+		padding = 1;
+
+	return (int)len*0.75 - padding;
+}
+
+int Base64Decode(char* b64message, char** buffer) 
+{ 
+	//Decodes a base64 encoded string
+	BIO *bio, *b64;
+	int decodeLen = calcDecodeLength(b64message),len = 0;
+	*buffer = (char*)malloc(decodeLen+1);
+	FILE* stream = fmemopen(b64message, strlen(b64message), "r");
+
+	b64 = BIO_new(BIO_f_base64());
+	bio = BIO_new_fp(stream, BIO_NOCLOSE);
+	bio = BIO_push(b64, bio);
+	BIO_set_flags(bio, BIO_FLAGS_BASE64_NO_NL); //Do not use newlines to flush buffer
+	len = BIO_read(bio, *buffer, strlen(b64message));
+	//Can test here if len == decodeLen - if not, then return an error
+	(*buffer)[len] = '\0';
+	BIO_free_all(bio);
+	fclose(stream);
+	return (0); //success
+}
+
+
+int Base64Encode(const char* message, char** buffer) 
+{ 
+	//Encodes a string to base64
+	BIO *bio, *b64;
+	FILE* stream;
+	int encodedSize = 4*ceil((double)strlen(message)/3);
+	*buffer = (char *)malloc(encodedSize+1);
+
+	stream = fmemopen(*buffer, encodedSize+1, "w");
+	b64 = BIO_new(BIO_f_base64());
+	bio = BIO_new_fp(stream, BIO_NOCLOSE);
+	bio = BIO_push(b64, bio);
+	BIO_set_flags(bio, BIO_FLAGS_BASE64_NO_NL); //Ignore newlines - write everything in one line
+	BIO_write(bio, message, strlen(message));
+	BIO_flush(bio);
+	BIO_free_all(bio);
+	fclose(stream);
+
+	return (0); //success
+}
+
+char *base64encode(unsigned char *in)
 {
 	BIO *bmem, *b64;
 	BUF_MEM *bptr;
@@ -230,7 +279,7 @@ int base64encode(unsigned char *in, unsigned char *out)
 	BIO_set_flags(b64, BIO_FLAGS_BASE64_NO_NL);
 
 	bmem = BIO_new(BIO_s_mem());
-	b64 = BIO_push(b64, bmem);
+	b64 = BIO_push(bmem, b64);
 
 	BIO_write(b64, in, strlen(in));
 	BIO_flush(b64);
@@ -241,10 +290,12 @@ int base64encode(unsigned char *in, unsigned char *out)
 
 	BIO_free_all(b64);
 
-	return 1;
+	PDEBUG("BASE64: \n %s\n", buff);
+
+	return buff;
 }
 
-int base64decode(unsigned char *in, unsigned char *out)
+char *base64decode(unsigned char *in)
 {
 
 }

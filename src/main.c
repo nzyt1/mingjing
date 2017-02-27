@@ -86,9 +86,17 @@ int main(int argc, char *argv[])
 
 				encrypt(password, ciphertext, key);
 				PDEBUG("CIPHER: %s\n", ciphertext);
-				insert(appname, username, ciphertext);
+				char *base64code;
+				Base64Encode(ciphertext, &base64code);
+				PDEBUG("BASE64: %s\n",base64code);
 
-				decrypt(ciphertext, password, key);
+				insert(appname, username, base64code);
+
+				char *tmp;
+				Base64Decode(base64code, &tmp);
+				PDEBUG("BASE DECODE: %s\n", tmp);
+
+				decrypt(tmp, password, key);
 				PDEBUG("CLEAR:  %s\n", password);
 
 				free(password);

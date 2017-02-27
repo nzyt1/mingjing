@@ -59,4 +59,9 @@ int hash_gene(unsigned char *app, unsigned char *username, unsigned char *hashco
 int encrypt(unsigned char *in, unsigned char *out, unsigned char *key);
 int decrypt(unsigned char *in, unsigned char *out, unsigned char *key);
 
+char *base64encode(unsigned char *in);
+char *base64decode(unsigned char *in);
+int Base64Encode(const char* message, char** buffer); 
+int Base64Decode(char* b64message, char** buffer); 
+
 #endif
