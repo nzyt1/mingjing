@@ -214,6 +214,7 @@ int decrypt(unsigned char *in, unsigned char *out, unsigned char *key)
 	return 1;
 }
 
+/* copy from barrysteyn(https://github.com/barrysteyn) */
 int calcDecodeLength(const char* b64input) 
 {
 	//Calculates the length of a decoded base64 string
@@ -268,34 +269,4 @@ int Base64Encode(const char* message, char** buffer)
 	fclose(stream);
 
 	return (0); //success
-}
-
-char *base64encode(unsigned char *in)
-{
-	BIO *bmem, *b64;
-	BUF_MEM *bptr;
-
-	b64 = BIO_new(BIO_f_base64());
-	BIO_set_flags(b64, BIO_FLAGS_BASE64_NO_NL);
-
-	bmem = BIO_new(BIO_s_mem());
-	b64 = BIO_push(bmem, b64);
-
-	BIO_write(b64, in, strlen(in));
-	BIO_flush(b64);
-	BIO_get_mem_ptr(b64, &bptr);
-
-	char *buff = (char*)malloc(bptr->length + 1);
-	buff[bptr->length] = 0;
-
-	BIO_free_all(b64);
-
-	PDEBUG("BASE64: \n %s\n", buff);
-
-	return buff;
-}
-
-char *base64decode(unsigned char *in)
-{
-
 }
