@@ -61,7 +61,7 @@ int decrypt(unsigned char *in, unsigned char *out, unsigned char *key);
 
 char *base64encode(unsigned char *in);
 char *base64decode(unsigned char *in);
-int Base64Encode(const char* message, char** buffer); 
-int Base64Decode(char* b64message, char** buffer); 
+int Base64Encode(const unsigned char* message, unsigned char** buffer); 
+int Base64Decode(unsigned char* b64message, unsigned char** buffer); 
 
 #endif

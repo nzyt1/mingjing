@@ -92,13 +92,6 @@ int main(int argc, char *argv[])
 
 				insert(appname, username, base64code);
 
-				char *tmp;
-				Base64Decode(base64code, &tmp);
-				PDEBUG("BASE DECODE: %s\n", tmp);
-
-				decrypt(tmp, password, key);
-				PDEBUG("CLEAR:  %s\n", password);
-
 				free(password);
 			}
 		}else{

@@ -15,6 +15,8 @@
  *
  * =====================================================================================
  */
+#undef _POSIX_C_SOURCE
+#define _POSIX_C_SOURCE 200809L
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -22,7 +24,30 @@
 #include <sys/stat.h>
 
 #include "debug.h"
+#include "data.h"
 #include "core.h"
+
+int generate(unsigned char *app, unsigned char *username, unsigned char *b64_pwd, int pwd_len)
+{
+	unsigned char *password = (unsigned char *)malloc((pwd_len + 1) * sizeof(unsigned char));
+	memset(password, '\0', pwd_len+1);
+
+	pwd_gene(app, username, password, pwd_len);
+	
+	int len_cip = (strlen(password)/AES_ARR_LEN+1)*AES_ARR_LEN;
+	unsigned char *ciphertext = (unsigned char *)malloc((len_cip + 1)*sizeof(unsigned char ));
+	memset(ciphertext, '\0', len_cip + 1);
+	
+	unsigned char *key = "0123456789ABCDEF";
+
+	encrypt(password, ciphertext, key);
+	PDEBUG("CIPHER: %s\n", ciphertext);
+	Base64Encode(ciphertext, &b64_pwd);
+	PDEBUG("BASE64: %s\n", b64_pwd);
+	free(password);
+	free(ciphertext);
+
+}
 
 int insert(unsigned char *app, unsigned char *username, unsigned char *password)
 {

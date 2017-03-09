@@ -15,6 +15,8 @@
  *
  * =====================================================================================
  */
+#undef _POSIX_C_SOURCE
+#define _POSIX_C_SOURCE 200809L
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
@@ -229,7 +231,7 @@ int calcDecodeLength(const char* b64input)
 	return (int)len*0.75 - padding;
 }
 
-int Base64Decode(char* b64message, char** buffer) 
+int Base64Decode(unsigned char* b64message, unsigned char** buffer) 
 { 
 	//Decodes a base64 encoded string
 	BIO *bio, *b64;
@@ -250,7 +252,7 @@ int Base64Decode(char* b64message, char** buffer)
 }
 
 
-int Base64Encode(const char* message, char** buffer) 
+int Base64Encode(const unsigned char* message, unsigned char** buffer) 
 { 
 	//Encodes a string to base64
 	BIO *bio, *b64;
